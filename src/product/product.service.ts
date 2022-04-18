@@ -1,6 +1,6 @@
 import {
   Injectable,
-  InternalServerErrorException,
+  UnprocessableEntityException,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -20,7 +20,7 @@ export class ProductService {
       const createdUser = new this.productModel(createProductDto);
       return createdUser.save();
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -32,7 +32,7 @@ export class ProductService {
       }
       return user;
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -44,7 +44,7 @@ export class ProductService {
       }
       return user;
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -65,7 +65,7 @@ export class ProductService {
       }
       return updatedUser.save();
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 
@@ -75,7 +75,7 @@ export class ProductService {
       const user = await this.productModel.deleteOne({ _id: id }).exec();
       return user;
     } catch (ex) {
-      throw new InternalServerErrorException(ex.toString());
+      throw new UnprocessableEntityException(ex.toString());
     }
   }
 }
